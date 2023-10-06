@@ -16,15 +16,16 @@ int main(){
     for(int i =0;i<n-1;i++){
         int min=arr[i+1];
         for(int j =i+1;j<n;j++){
-            if(min>arr[j+1]){
-                min = arr[j+1];
-                cout<<"\nmin element is : "<<min<<" ";
-                index  =j+1;
+            if(min>arr[j]){
+                min = arr[j];
+                index  = j;
             }
         }
+        if(arr[i]>min){
         int temp = arr[index];
         arr[index] = arr[i];
         arr[i]=temp;
+        }
     }
      cout<<"\narray AFTER sorting is: ";
     for(int i =0;i<n;i++){
