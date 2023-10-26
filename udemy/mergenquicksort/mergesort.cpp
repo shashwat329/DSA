@@ -1,6 +1,4 @@
-// taking an array dividing it into 2 parts sort both first and second arrray
-
-#include <iostream>
+#include<iostream>
 using namespace std;
 void mergeArrays(int x[],int y[],int a[],int s,int e){
        int mid = (s+e)/2;
@@ -30,28 +28,32 @@ void mergeArrays(int x[],int y[],int a[],int s,int e){
        }
 }
 
-void mergeSort(int a[],int s,int e){
+void mergesort(int arr[],int s,int e){
     if(s>=e){
         return;
     }
-    int mid = (s+e)/2;
-    int x[100],y[100];
-    for(int i=s;i<=mid;i++){ 
-        x[i] = a[i];
+    int mid = (s+e+1)/2;
+    int x[100], y[100];
+    for(int i =s;i<=e;i++){
+        if(i<mid){
+            x[i]=arr[i];
+        }
+        else{
+            y[i-mid]=arr[i];
+        }
     }
-    for(int i=mid+1;i<=e;i++){
-        y[i] = a[i];
-    }
-    mergeSort(x,s,mid);
-    mergeSort(y,mid+1,e);
-    mergeArrays(x,y,a,s,e);
-}
-int main()
-{ int a[] = {7,3,10,5,6,2,-5};
-  mergeSort(a,0,6);
+    mergesort(x,s,mid);
+    mergesort(y,s,e-mid+1);
+    mergeArrays(x,y,arr,s,e);
 
-  for(int i=0;i<7;i++){
-    cout<<a[i]<<" ";
-  }
-  return 0;
+}
+int main(){
+    int arr[]={1,4,2,-4,5,10,23,12};
+    int n = 8;
+    cout<<"array before mergesort: ";
+    for(int i =0;i<n;i++){
+        cout<<arr[i]<<" ";
+    }
+    cout<<"\n";
+    return 0;
 }
