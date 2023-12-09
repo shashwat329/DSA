@@ -62,4 +62,4 @@ int main(){
     display(head);
     cout<<"middle of the this linkedlist is "<<middlell(head)<<endl;
     return 0;
-}
+    }
