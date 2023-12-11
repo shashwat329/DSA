@@ -38,19 +38,43 @@ void display(node* temp){
     }
     
 }
-node* deletell(node* head,int k){
-    node* one =head;
-    node* two= head;
-    for(int i =0;i<k;i++){
-        two=two->next;
+node* deletell(node* head, int k) {
+    // Create two pointers, one and two, both initially pointing to the head
+    node* one = head;
+    node* two = head;
+
+    // Move the 'two' pointer k nodes ahead
+    for (int i = 0; i < k; i++) {
+        if (two == NULL) {
+            // Handle the case where k is greater than the length of the linked list
+            return head;
+        }
+        two = two->next;
     }
-    while(two!=NULL){
-        one=one->next;
-        two=two->next;
+
+    // If 'two' is now NULL, it means k is equal to the length of the linked list
+    if (two == NULL) {
+        // Special case: delete the head node
+        node* temp = head;
+        head = head->next;
+        delete temp;
+        return head;
     }
-    delete(one);
+
+    // Move both pointers until 'two' reaches the end of the linked list
+    while (two->next != NULL) {
+        one = one->next;
+        two = two->next;
+    }
+
+    // 'one' is now pointing to the node before the node to be deleted
+    node* temp = one->next;
+    one->next = one->next->next;
+    delete temp;
+
     return head;
 }
+
 int main(){
     node* head = takeinput();
     display(head);
