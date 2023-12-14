@@ -37,45 +37,30 @@ void display(node * head){
     }
 }
 node * mergesortll(node * head1,node *head2){
-   if (head1 == NULL) {
-        return head2;
-    }
-    else if (head2 == NULL) {
-        return head1;
-    }
-    node* head = NULL;
-    node* tail = NULL;
-    while (head1 != NULL && head2 != NULL) {
-        if (head1->data <= head2->data) {
-            if (head == NULL) {
-                head = head1;
-                tail = head1;
-            }
-            else {
-                tail->next = head1;
-                tail = head1;
-            }
-            head1 = head1->next;
+    node * head=NULL;
+    if(head==NULL){
+        if((head1->data)>(head2->data)){
+            head=head2;
         }
-        else {
-            if (head == NULL) {
-                head = head2;
-                tail = head2;
-            }
-            else {
-                tail->next = head2;
-                tail = head2;
-            }
-            head2 = head2->next;
+        else{
+            head=head1;
         }
     }
-    if (head1 != NULL) {
-        tail->next = head1;
-    }
-    else {
-        tail->next = head2;
-    }
-    return head;
+   if(head1->next==NULL){
+    return head1->next=head2;
+   }
+   if(head2->next==NULL){
+    return head2->next=head1;
+   }
+   if(head1->data>=head2->data){
+    head=head2;
+    head->next=mergesortll(head1,head2->next);
+   }
+   if(head2->data>=head1->data){
+    head=head1;
+    head->next=mergesortll(head1->next,head2);
+   }
+   return head;
 }
 int main(){
     node * head1=takeinput();
