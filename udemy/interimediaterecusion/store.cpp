@@ -10,6 +10,8 @@ void store(int arr[],int n,int key,int i,vector <int> &v){
         v.push_back(i);
     }
     return store(arr,n,key,i+1,v);
+
+    // some test case failed.
     
 }
 int main(){
