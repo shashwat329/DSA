@@ -26,6 +26,10 @@ void printtree(treenode<int>*root){
         printtree(root->children[i]);
     }
 }
+void takeinput(){
+    return treenode root;
+
+}
 int main(){
     treenode <int>* root = new treenode<int>(1);
     treenode <int>* rchild1 = new treenode<int>(2);
