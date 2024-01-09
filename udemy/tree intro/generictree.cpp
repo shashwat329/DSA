@@ -27,7 +27,7 @@ void printtree(treenode<int>*root){
     }
 }
 void takeinput(){
-    return treenode root;
+    // return treenode root; 
 
 }
 int main(){
