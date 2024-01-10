@@ -26,16 +26,28 @@ void printtree(treenode<int>*root){
         printtree(root->children[i]);
     }
 }
-void takeinput(){
-    // return treenode root; 
-
+treenode<int>* takeinput(){
+    // return treenode root;
+    int data;
+    cout<<"enter the data: ";
+    cin>>data;
+    treenode<int> *root = new treenode<int> (data);
+    int n;
+    cout<<"enter the number of children "<<data<<": ";
+    cin>>n;
+    for(int  i= 0;i<n;i++){
+        treenode<int> *child = takeinput(); 
+        root->children.push_back(child);
+    }
+    return root;
 }
 int main(){
-    treenode <int>* root = new treenode<int>(1);
-    treenode <int>* rchild1 = new treenode<int>(2);
-    treenode <int>* rchild2= new treenode<int>(3);
-    root->children.push_back(rchild1);
-    root->children.push_back(rchild2);
+    // treenode <int>* root = new treenode<int>(1);
+    // treenode <int>* rchild1 = new treenode<int>(2);
+    // treenode <int>* rchild2= new treenode<int>(3);
+    // root->children.push_back(rchild1);
+    // root->children.push_back(rchild2);
+    treenode<int> * root = takeinput();
 printtree(root);
 
     return 0;
