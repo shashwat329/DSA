@@ -71,8 +71,6 @@ void print_kth_element(treenode<int>* root,int k){
 int main(){
     treenode<int>* root = takeinputlevelwise();
     printtree(root);
-    return 0;
-}
-int main(){
+    print_kth_element(root,2);
     return 0;
 }

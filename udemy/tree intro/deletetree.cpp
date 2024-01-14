@@ -1,4 +1,4 @@
-// write a program to count the leaf node
+// delete a tree
 #include <iostream>
 #include <vector>
 #include <queue>

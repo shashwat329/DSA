@@ -1,4 +1,4 @@
-// postorder traversal
+// destructor 
 #include <iostream>
 #include <vector>
 #include <queue>
@@ -13,9 +13,16 @@ public:
     {
         this->data = data;
     }
+    // this is destructor
+    ~treenode(){
+        for(int i =0;i<children.size();i++){
+            delete children[i];
+        }
+    }
 };
 treenode<int> *takeinputlevelwise()
 {
+
     int rootdata;
     cout << "enter the root: ";
     cin >> rootdata;
@@ -130,6 +137,15 @@ void post_order(treenode<int> *root)
     cout << root->data << ",";
 
 }
+void deletetree(treenode<int> * root){
+    if(root ==NULL){
+        return;
+    }
+    for(int  i =0;i<root->children.size();i++){
+        deletetree(root->children[i]);
+    }
+    delete root;
+}
 // 1 3 2 3 4 2 5 6 2 7 8 0 0 0 0 1 9 0
 int main()
 {
@@ -144,5 +160,11 @@ int main()
     printtreepreorder(root);
     cout<<endl;
     post_order(root);
+    cout<<endl;
+
+    // deletetree(root);
+    delete root;
+    printtreelevelwise(root);
+
     return 0;
 }
