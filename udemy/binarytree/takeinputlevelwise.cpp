@@ -1,4 +1,5 @@
 #include<iostream>
+#include<queue>
 using namespace std;
 template<typename T>
 class btnode{
@@ -40,7 +41,35 @@ btnode<int> * takeinput(){
     return root;
 }
 btnode<int>* takeinputlevelwise(){
-    
+    int n;
+    cout<<"enter the root: ";
+    cin>>n;
+    btnode<int>*node = new btnode<int>(n);
+    queue<btnode<int>*> q;
+    q.push(node);
+    while(!q.empty()){
+        btnode<int> *f = q.front();
+        q.pop();
+        cout<<"enter the left child of "<<f->data<<": ";
+        int leftchilddata;
+        cin>>leftchilddata;
+        if(leftchilddata!=-1){
+        btnode<int>*child = new btnode<int>(leftchilddata);
+        q.push(child);
+        f->left= child;
+        }
+        int righttchilddata;
+        cout<<"enter the right child of "<<f->data<<": ";
+        cin>>righttchilddata;
+        if(righttchilddata!=-1){
+            btnode<int> *child = new btnode<int>(righttchilddata);
+            q.push(child);
+            f->right = child;
+        }
+        
+
+    }
+    return node;
 }
 void print_bt1(btnode<int>* root){
     if(root==NULL){
@@ -60,7 +89,7 @@ void print_bt1(btnode<int>* root){
 }
 int main(){
     
-    btnode <int>* root = takeinput();
+    btnode <int>* root = takeinputlevelwise();
     print_bt1(root);
     return 0;
 }
