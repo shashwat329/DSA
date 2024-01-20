@@ -47,30 +47,14 @@ btnode<int> * takeinput(){
     }
     return root;
 }
-void print_bt(btnode<int>* root){
-    if(root ==NULL){
-        return;
+void inorder_traversal(btnode<int> * root){
+    if(root!=NULL){
+        inorder_traversal(root->left);
+        cout<<root->data<<" ";
+        inorder_traversal(root->right);
     }
-    queue<btnode<int> *> q;
-    q.push(root);
-    q.push(NULL);
-    while(!q.empty()){
-        if(root->left){
-            q.push(root->left);
-        }
-        if(root->right){
-            q.push(root->right);
-        } 
-        cout<<q.front();
-        q.pop();
-        if(q.front() ==NULL){
-            if(!q.empty()){
-                q.pop();
-                cout<<endl;
-            }
-        }
-    }
-} 
+    if(root==NULL) return;
+}
 
 int countnode(btnode<int>* root){
     if(root==NULL){
@@ -78,9 +62,20 @@ int countnode(btnode<int>* root){
     }
     return 1+countnode(root->left)+countnode(root->right);
 }
+int countleafnode(btnode<int>* root){
+    
+    if(root==NULL)return 0;
+    if(root->left==NULL&& root->right==NULL){
+        return 1;
+    }
+    return countleafnode(root->left)+countleafnode(root->right);
+}
 
 int main(){
     btnode<int> * root = takeinput();
-    print_bt(root);
+    cout<<"the inorder tranversal of the tree is "<<endl;
+    inorder_traversal(root);
+    cout<<"\nTotal number of node are: "<<countnode(root)<<endl;
+    cout<<"Total number of leaf-node are: "<<countleafnode(root)<<endl;
     return 0;
 }

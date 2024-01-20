@@ -47,40 +47,44 @@ btnode<int> * takeinput(){
     }
     return root;
 }
-void print_bt(btnode<int>* root){
-    if(root ==NULL){
-        return;
-    }
-    queue<btnode<int> *> q;
-    q.push(root);
-    q.push(NULL);
-    while(!q.empty()){
-        if(root->left){
-            q.push(root->left);
-        }
-        if(root->right){
-            q.push(root->right);
-        } 
-        cout<<q.front();
-        q.pop();
-        if(q.front() ==NULL){
-            if(!q.empty()){
-                q.pop();
-                cout<<endl;
-            }
-        }
-    }
-} 
+// 10 2 30 41 52 62 -1 17 -1 -1 -1 18 91 -1 -1 -1 -1 120 -1 -1 121 -1 -1
 
-int countnode(btnode<int>* root){
-    if(root==NULL){
-        return 0;
-    }
-    return 1+countnode(root->left)+countnode(root->right);
+bool isthere(btnode<int>*root,int key){
+    if(root == NULL) return false;
+    if(key==root->data) return true;
+    return isthere(root->left,key)|| isthere(root->right,key);
+
 }
-
+int findminimum(btnode<int>* root){
+    if(root==NULL){
+        return INT_MAX;
+    }
+    int min = root->data;
+    int lefttree = findminimum(root->left);
+    int righttree = findminimum(root->right);
+    if(min>lefttree) {
+        min = lefttree;
+    }
+    if(min>righttree){
+        min = righttree;
+    }
+    return min; 
+}
+void minimumvalue(btnode<int> *root,int &ans){
+    if(root==NULL) return ;
+    ans = min(ans,root->data);
+    minimumvalue(root->left,ans);
+    minimumvalue(root->right,ans);
+}
 int main(){
     btnode<int> * root = takeinput();
-    print_bt(root);
+    cout<<"inorder traversal of the tree is \n";
+    // inorder_traversal(root);
+    cout<<isthere(root,25)<<endl;
+    cout<<"the minimum in the tree is: "<<findminimum(root)<<endl; 
+    int ans=INT_MAX;
+    minimumvalue(root,ans);
+    cout<<"the other way to find the minimum value is "<<ans<<endl;
+
     return 0;
 }

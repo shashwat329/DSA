@@ -47,40 +47,17 @@ btnode<int> * takeinput(){
     }
     return root;
 }
-void print_bt(btnode<int>* root){
-    if(root ==NULL){
-        return;
+void preorder_traversal(btnode<int> * root){
+    if(root!=NULL){
+        cout<<root->data<<" ";
+        preorder_traversal(root->left);
+        preorder_traversal(root->right);
     }
-    queue<btnode<int> *> q;
-    q.push(root);
-    q.push(NULL);
-    while(!q.empty()){
-        if(root->left){
-            q.push(root->left);
-        }
-        if(root->right){
-            q.push(root->right);
-        } 
-        cout<<q.front();
-        q.pop();
-        if(q.front() ==NULL){
-            if(!q.empty()){
-                q.pop();
-                cout<<endl;
-            }
-        }
-    }
-} 
-
-int countnode(btnode<int>* root){
-    if(root==NULL){
-        return 0;
-    }
-    return 1+countnode(root->left)+countnode(root->right);
+    if(root==NULL) return;
 }
-
 int main(){
     btnode<int> * root = takeinput();
-    print_bt(root);
+    cout<<"preorder traversal of the tree is \n";
+    preorder_traversal(root);
     return 0;
 }
