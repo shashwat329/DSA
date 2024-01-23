@@ -1,0 +1,1 @@
+ cout<<"sum of all element of array using recusive apporach is : "<<sumofarray(arr,10)<<endl;
