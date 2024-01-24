@@ -1,4 +1,4 @@
-// create a binary tree and implement binary search tree 
+// find the min element in the binary tree
 #include<iostream>
 #include<queue>
 using namespace std;
@@ -58,32 +58,17 @@ treenode<int>* takeinput(){
 }
 void printtree(treenode<int>* root){
 
+// 25 15 30 10 20 28 33 15 7 11 22 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 }
-// input : 25 15 30 10 20 28 33 5 7 22 -1 -1 -1 -1
-bool searchbst(treenode<int>* root,int k){
-    if(root ==NULL){
-        return false;
+int minimum_element(treenode<int>* root){
+    if(root==NULL) return -1;
+    while(root->left!=NULL){
+        root=root->left;
     }
-    if(k== root->data){
-        return true;
-    }
-    if(k>root->data){
-        return searchbst(root->right,k);
-    }
-    if(k<root->data){
-        return searchbst(root->left,k);
-    }
-    return false;
+    return root->data;
 }
 int main(){
     treenode<int>* root = takeinput();
-    bool ans = searchbst(root,10);
-    if(ans==true){
-        cout<<"element found!";
-    }
-    else{
-        cout<<"sorry element not found!";
-    }
-
+    cout<<"min value in this tree is :"<<minimum_element(root)<<endl;
     return 0;
 }
