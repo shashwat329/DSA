@@ -59,13 +59,16 @@ int rangeSum(btnode<int>* root,int l, int h){
     sum+=rangeSum(root->right,l,h);
     return sum;
 }
-bool validateBST(btnode<int>* root){
-    if(root ==NULL) return true;
-    if(root->left!=NULL){
-        if(root->left->data<root->data){
-
-        };
-    }
+bool validateBST(btnode<int>* root,int low=INT_MIN,int high=INT_MAX){
+ if(root==NULL){
+    return true;
+ }
+ if(root->data<low||root->data>high){
+    return false;
+ }
+ bool leftchild = validateBST(root->left,low,root->data);
+ bool rightchild = validateBST(root->right,root->data,high);
+ return (leftchild||rightchild);
 
 }
 // 10 5 15 3 7 13 18 1 -1 6 -1 -1 -1 -1 -1 -1 -1 -1 -1
@@ -73,5 +76,12 @@ int main(){
     btnode<int>* root = takeinput();
     int ans = rangeSum(root,6,10);
     cout<<ans<<endl;
+    bool ans = validateBST(root);
+    if(ans==0){
+        cout<<"its not a binary tree!!"<<endl;
+    }
+    else{
+        cout<<"its a binary tree!!"<<endl;
+    }
     return 0;
 }
