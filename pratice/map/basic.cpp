@@ -1,4 +1,6 @@
-#include<bits/stdc++.h>
+// #include<bits/stdc++.h>
+#include<iostream>
+#include<map>
 using namespace std;
 int main(){
  map<string, int> mpp;
