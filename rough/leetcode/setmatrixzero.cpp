@@ -17,7 +17,7 @@ void setmatrixzero(vector<vector<int> > &v)
         }
         fill(v[row].begin(), v[row].end(), 0);
     }
-   fi
+//    fi
 }
 int main()
 {
